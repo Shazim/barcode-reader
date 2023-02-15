@@ -1,38 +1,44 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
 // @ts-ignore
-import Scanner from './component/Scanner';
-
+import Scanner from "./component/Scanner";
 
 function App() {
-const [state, setState] = useState(false);
-const [resultCode,setResultCode ]=useState('')
+  const [state, setState] = useState(false);
+  const [resultCode, setResultCode] = useState("");
 
-  const scan=()=> {
+  const scan = () => {
+    setState(!state);
+  };
 
-  setState(!state);
-  }
-
- const onDetected=(result:any)=> {
+  const onDetected = (result: any) => {
     console.log(result, "shhshsh");
-    setResultCode(result?.codeResult?.code)
+    setResultCode(result?.codeResult?.code);
     // this.setState({ results: this.state.results.concat([result]) });
-   setState(!state)
-  }
+    setState(!state);
+  };
 
   return (
     <div className="App">
-     <div className='text-center pt-10 font-bold text-5xl'>Bar Code Reader</div>
-     {!state&&
-      <div>
-      <button onClick={()=>scan()} className='w-40 btn-scanner' >Open Scanner</button> 
-   </div>
-     }
-    
+      <div className="text-center pt-10 font-bold text-5xl">
+        Bar Code Reader
+      </div>
+      {!state && (
+        <div>
+          <button onClick={() => scan()} className="w-40 btn-scanner">
+            Open Scanner
+          </button>
+        </div>
+      )}
 
-     {state ? (
-      <div className='flex justify-center mt-20 '>
-          <Scanner onDetected={(result:boolean) => onDetected(result)} />
-          </div> ) : <div className='flex justify-center font-bold text-4xl mt-7'>{resultCode}</div>}
+      {state ? (
+        <div className="flex justify-center mt-20 ">
+          <Scanner onDetected={(result: boolean) => onDetected(result)} />
+        </div>
+      ) : (
+        <div className="flex justify-center font-bold text-4xl mt-7">
+          {resultCode}
+        </div>
+      )}
     </div>
   );
 }
