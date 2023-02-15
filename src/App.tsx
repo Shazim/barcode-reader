@@ -11,9 +11,7 @@ function App() {
   };
 
   const onDetected = (result: any) => {
-    console.log(result, "shhshsh");
     setResultCode(result?.codeResult?.code);
-    // this.setState({ results: this.state.results.concat([result]) });
     setState(!state);
   };
 
