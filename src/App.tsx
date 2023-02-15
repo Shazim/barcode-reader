@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+// @ts-ignore
+import Scanner from './component/Scanner';
+
 
 function App() {
+const [state, setState] = useState(false);
+const [resultCode,setResultCode ]=useState('')
+
+  const scan=()=> {
+
+  setState(!state);
+  }
+
+ const onDetected=(result:any)=> {
+    console.log(result, "shhshsh");
+    setResultCode(result?.codeResult?.code)
+    // this.setState({ results: this.state.results.concat([result]) });
+   setState(!state)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div className='text-center pt-10 font-bold text-5xl'>Bar Code Reader</div>
+     {!state&&
+      <div>
+      <button onClick={()=>scan()} className='w-40 btn-scanner' >Open Scanner</button> 
+   </div>
+     }
+    
+
+     {state ? (
+      <div className='flex justify-center mt-20 '>
+          <Scanner onDetected={(result:boolean) => onDetected(result)} />
+          </div> ) : <div className='flex justify-center font-bold text-4xl mt-7'>{resultCode}</div>}
     </div>
   );
 }

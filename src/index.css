@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.btn-scanner{
+  margin: auto;
+  margin-top: 40px;
+  display: block;
+  width: 140px;
+  height:40px;
+  background-color: black;
+  color: white
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
